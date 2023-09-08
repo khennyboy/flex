@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>layout using flex</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale='1.0'" />
+    <style type="text/css">
+      * {
+        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px;
+        font-family: arial;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      #wrapper-div {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        min-height: 100px;
+        margin: auto;
+      }
+      #logo-div {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        min-height: 50px;
+        background-color: lightgray;
+        align-items: center;
+        padding-left: 2%;
+      }
+      #nav-div {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        min-height: 30px;
+        background-color: lightgray;
+        margin-top: 10px;
+        align-items: center;
+        justify-content: center;
+      }
+      #header-banner-div {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        min-height: 100px;
+        background-color: lightgray;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+      }
+      #main-div {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        min-height: 400px;
+        margin-top: 10px;
+        justify-content: space-between;
+      }
+      #side-bar-div {
+        display: flex;
+        flex-direction: row;
+        background-color: lightgray;
+        flex-basis: 20%;
+        justify-content: center;
+        align-items: center;
+      }
+      #body-area-div {
+        display: flex;
+        flex-direction: row;
+        background-color: lightgray;
+        flex-basis: 75%;
+        justify-content: center;
+        align-items: center;
+      }
+      #footer-div {
+        display: flex;
+        flex-direction: row;
+        min-height: 50px;
+        width: 100%;
+        background-color: lightgray;
+        margin-top: 10px;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper-div">
+      <div id="logo-div">Logo</div>
+      <div id="nav-div">Navigation</div>
+      <div id="header-banner-div">Header / Banner</div>
+      <div id="main-div">
+        <div id="side-bar-div">Sidebar</div>
+        <div id="body-area-div">Body Area</div>
+      </div>
+      <div id="footer-div">Footer</div>
+    </div>
+  </body>
+</html>
