@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+    padding: 20px;
+    background: rgb(39, 179, 235);
+    display: flex;
+    justify-content: center;
+    counter-reset: list;
+  }
+  .container {
+    padding: 20px;
+    background: #fff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    height: fit-content;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  }
+  .container h3 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+    margin: 10px;
+  }
+  #create {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  #create input {
+    padding: 5px;
+    font-size: 18px;
+    outline: none;
+    border: 2px solid rgb(39, 179, 235);
+    border-radius: 8px;
+    width: 70%;
+  }
+  #add {
+    width: 25%;
+    padding: 8px;
+    background: rgb(4, 111, 252);
+    color: #fff;
+    border: 2px solid rgb(10, 128, 175);
+    cursor: pointer;
+  }
+  #add:hover {
+    background: rgba(39, 179, 235, 0.7);
+  }
+
+  #todolist {
+    padding: 0;
+    list-style-type: upper-roman;
+  }
+  #todolist li {
+    padding: 10px;
+    width: 90%;
+    margin-bottom: 5px;
+    background: rgba(81, 182, 223, 0.5);
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #todolist li span::before {
+    counter-increment: list;
+    content: counter(list) ". ";
+  }
+
+  #todolist li.marked {
+    background: rgba(223, 86, 81, 0.5);
+  }
+  li span {
+    width: 80%;
+  }
+  .del,
+  .edit,
+  .done {
+    padding: 3px;
+    background: none;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+  }
+  .del {
+    color: red;
+  }
+  .edit {
+    color: blue;
+  }
+  .done {
+    color: green;
+  }

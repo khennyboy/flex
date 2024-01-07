@@ -1,176 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <title>My Educational Website</title>
-    <link rel="stylesheet" href="./css/index.css" type="text/css" />
-    <link rel="stylesheet" href="fontawesome/css/all.min.css" />
+    <title>To Do List</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css"></style>
+    <script src="./java_script/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="./../fontawesome-free-6.4.0-web/fontawesome/css/all.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-    <meta name="viewport" content="width=device-width" , initial-scale="1.0" />
+  <script src="fontawesome-free-6.4.0-web/fontawesome/js/all.min.js"></script>
+   <link rel="stylesheet" href="./css/todo.css">
   </head>
   <body>
-    <header>
-      <h1>Edutech</h1>
-      <div class="icon">
-        <!-- The icon to show on small screen -->
-        <span id="opennav"><i class="fa fa-bars"></i></span>
+    <div class="container">
+      <h3>ToDo List</h3>
+      <div id="create">
+        <input type="text" id="input" autofocus  />
+        <button id="add">Add</button>
       </div>
-      <!-- the nav to show on small screen -->
-      <div class="small-screen">
-        <nav>
-          <ul>
-            <li>
-              <a href="#"><i class="fa fa-home"></i>&nbsp;Home</a>
-            </li>
-            <li>
-              <label for="Course"
-                ><i class="fa fa-book"></i> Courses
-                <i class="fa fa-caret-down" id="down"></i>
-                <i class="fa fa-caret-up" id="up"></i
-              ></label>
-              <div id="sublist">
-                <a href="#">Engineering</a>
-                <a href="#">Biochemistry</a>
-              </div>
-            </li>
-            <li>
-              <a href="#"> <i class="fa fa-building"></i>&nbsp;About</a>
-            </li>
-            <li>
-              <a href="#"><i class="fa fa-phone"></i>&nbsp;Contact</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-
-      <!-- the nav to be shown on large screen -->
-      <div class="large-screen">
-        <nav>
-          <ul>
-            <li>
-              <a href="#"><i class="fa fa-home"></i>&nbsp;Home</a>
-            </li>
-            <!-- The sub list menu to be shown on large screen -->
-            <li class="dd">
-              <a href="#"><i class="fa fa-book"></i>&nbsp;Courses</a>
-              <div class="dd-content">
-                <a href="#">Engineering</a>
-                <a href="#">Biochemistry</a>
-              </div>
-            </li>
-            <li>
-              <a href="#"> <i class="fa fa-building"></i>&nbsp;About</a>
-            </li>
-            <li>
-              <a href="#"><i class="fa fa-phone"></i>&nbsp;Contact</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      <section>
-        <h2>Welcome to Our Website</h2>
-        <p>
-          We offer a wide range of online courses to help you achieve your
-          educational goals. Our courses are designed to be flexible and
-          convenient, so you can learn at your own pace and on your own
-          schedule.
-        </p>
-        <p>Explore our course offerings and enroll today!</p>
-      </section>
-
-      <section class="course">
-        <h2>Our Courses</h2>
-        <ul>
-          <li><a href="#">Course 1</a></li>
-          <li><a href="#">Course 2</a></li>
-          <li><a href="#">Course 3</a></li>
-          <li><a href="#">Course 4</a></li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>About Us</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo
-          ipsum vel dolor tristique, sit amet efficitur tortor ullamcorper.
-          Etiam rutrum dapibus est, vel pretium velit gravida sed. Fusce eget
-          sapien auctor, efficitur urna ac, tincidunt ipsum. In euismod augue a
-          tortor lobortis, ut lobortis lectus finibus. Sed euismod metus dolor,
-          vel bibendum lorem lobortis ut.
-        </p>
-      </section>
-
-      <section>
-        <h2>Contact Us</h2>
-        <form>
-          <table>
-            <tr>
-              <td><label for="name">Name:</label></td>
-              <td><input type="text" id="name" name="name" required /></td>
-            </tr>
-            <tr>
-              <td><label for="email">Email:</label></td>
-              <td><input type="email" id="email" name="email" required /></td>
-            </tr>
-            <tr>
-              <td><label for="message">Message:</label></td>
-              <td>
-                <textarea id="message" name="message" required></textarea>
-              </td>
-            </tr>
-            <tr>
-              <td><input type="submit" value="Submit" /></td>
-            </tr>
-          </table>
-        </form>
-      </section>
-    </main>
-
-    <footer>
-      <p>&copy; 2023 My Educational Website. All rights reserved.</p>
-    </footer>
+      <ol id="todolist"></ol>
+    </div>
 
     <script>
-      var open = document.querySelector("#opennav");
-      var nav = document.querySelector(".small-screen nav ul");
-      var dropdown = document.querySelector("div.small-screen nav ul li label");
-      var content = document.querySelector(
-        "div.small-screen nav ul li div#sublist"
-      );
-      var upbar = document.querySelector("div.small-screen nav ul li i#up");
-      var downbar = document.querySelector("div.small-screen nav ul li i#down");
-      var isOpen = false;
-      var isOpen2 = false;
+      // check if local storage is supported
+      if (typeof Storage != "undefined") {
+        // then extract saved data using the name (if any)
+        $("#todolist").html(localStorage.getItem("todo_list"));
+        //var list
+      } else {
+        // if local storage is not supported
+        alert("local storage not supported");
+      }
+      $("#add").click(function () {
+        var todo = $("#input").val();
+        if (todo == "") {
+          alert("Empty List");
+        } else {
+          var list = `<li ><span>${todo}</span> <button class="del"><i class="fas fa-trash"></i></button> <button class="edit"><i class="fas fa-edit"></i></button> <button class="done"><i class="fas fa-check-double"></i></button></li>`;
+          $("#todolist").append(list);
+          // update local storage by setting item name as "list" and value as the list content
+          localStorage.setItem("todo_list", $("#todolist").html());
+          $("#input").val("");
+        }
+        $(".del").click(function () {
+          $(this).parent("li").remove();
+          localStorage.setItem("todo_list", $("#todolist").html());
+        });
+        $(".done").click(function () {
+          $(this).parent("li").addClass("marked");
+          $(this)
+            .parent("li")
+            .prepend(`<i class="fas fa-check" style="color:green"></i> `);
+          $(this).siblings(".edit").remove();
+          // $(this).remove();
+          localStorage.setItem("todo_list", $("#todolist").html());
+        });
 
-      open.addEventListener("click", function () {
-        if (isOpen == false) {
-          nav.style.display = "block";
-          content.style.display = "none";
-          isOpen = true;
-        } else {
-          nav.style.display = "none";
-          content.style.display = "none";
-          isOpen = false;
-        }
-      });
-      dropdown.addEventListener("click", function () {
-        if (content.style.display == "none") {
-          content.style.display = "block";
-          downbar.style.display = "none";
-          upbar.style.display = "inline-block";
-          isOpen2 = true;
-        } else {
-          content.style.display = "none";
-          upbar.style.display = "none";
-          downbar.style.display = "inline-block";
-          isOpen2 = false;
-        }
+        $(".edit").click(function () {
+          var content = $(this).siblings("span").text();
+          $("#input").val(content);
+          $(this).parent("li").remove();
+          localStorage.setItem("todo_list", $("#todolist").html());
+        });
       });
     </script>
   </body>
